@@ -1,0 +1,63 @@
+import com.example.composeexample.buildsrc.*
+
+plugins {
+    id "com.android.library"
+    id "kotlin-android"
+    id "kotlinx-serialization"
+    id 'kotlin-kapt'
+}
+
+android {
+    compileSdkVersion Configs.CompileSdkVersion
+
+    defaultConfig {
+        minSdkVersion Configs.MinSdkVersion
+        targetSdkVersion Configs.TargetSdkVersion
+        versionCode Configs.VersionCode
+        versionName Configs.VersionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+
+        buildConfigField "String", "BASE_URL", '"http://export.arxiv.org/api/query"'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    implementation project(':domain')
+    implementation project(':app')
+
+    implementation Libs.Coroutines.android
+    implementation Libs.Coroutines.core
+
+    implementation Libs.Serialization.json
+    implementation Libs.Serialization.core
+    implementation Libs.Serialization.serialization
+    implementation Libs.Serialization.ktor
+
+    implementation Libs.Ktor.client
+    implementation Libs.Ktor.logging
+    implementation Libs.Ktor.serializationClient
+
+    implementation Libs.Room.runtime
+    implementation Libs.Room.compiler
+    implementation Libs.Room.ktx
+
+    testImplementation Libs.Coroutines.test
+    testImplementation Tests.junit
+    testImplementation Tests.junitKotlin
+}

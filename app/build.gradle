@@ -1,0 +1,113 @@
+import com.example.composeexample.buildsrc.*
+
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    id "kotlinx-serialization"
+    id 'kotlin-kapt'
+}
+
+android {
+    compileSdkVersion Configs.CompileSdkVersion
+
+    defaultConfig {
+        applicationId "com.example.composeexample"
+        minSdkVersion Configs.MinSdkVersion
+        targetSdkVersion Configs.TargetSdkVersion
+        versionCode Configs.VersionCode
+        versionName Configs.VersionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        packagingOptions {
+            exclude 'META-INF/DEPENDENCIES'
+            exclude 'META-INF/INDEX.LIST'
+            exclude 'META-INF/LICENSE'
+            exclude 'META-INF/LICENSE.txt'
+            exclude 'META-INF/license.txt'
+            exclude 'META-INF/NOTICE'
+            exclude 'META-INF/NOTICE.txt'
+            exclude 'META-INF/notice.txt'
+            exclude 'META-INF/ASL2.0'
+            exclude 'META-INF/ASL2.0'
+            exclude("META-INF/io.netty.versions.properties")
+        }
+
+        buildConfigField "String", "BASE_URL", '"http://export.arxiv.org/api/query"'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    buildFeatures {
+        compose true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion "1.0.0-beta09"
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
+    configurations {
+        implementation.exclude group: 'org.jetbrains', module: 'annotations'
+    }
+}
+
+dependencies {
+    implementation project(':domain')
+    implementation project(':data')
+
+    implementation Compose.animation
+    implementation Compose.iconsExtended
+    implementation Compose.material
+    implementation Compose.runtime
+    implementation Compose.tooling
+    implementation Compose.ui
+    implementation Compose.uiUtil
+    implementation Compose.activityCompose
+    implementation Compose.navigationCompose
+    implementation Compose.lifecycleViewModelCompose
+
+    implementation Core.androidXCore
+    implementation Core.appCompat
+    implementation Core.material
+
+    implementation Libs.Coil.library
+    implementation Libs.Coil.base
+
+    implementation Libs.Coroutines.android
+    implementation Libs.Coroutines.core
+
+    implementation Libs.Ktor.client
+    implementation Libs.Ktor.logging
+    implementation Libs.Ktor.serializationClient
+
+    implementation Libs.Serialization.json
+    implementation Libs.Serialization.core
+    implementation Libs.Serialization.serialization
+    implementation Libs.Serialization.ktor
+
+    implementation Libs.Koin.core
+    implementation Libs.Koin.android
+    implementation Libs.Koin.androidCompat
+
+    androidTestImplementation Libs.Koin.test
+    androidTestImplementation Compose.uiTest
+    testImplementation Libs.Coroutines.test
+    testImplementation Tests.junit
+    testImplementation Tests.junitKotlin
+
+    testImplementation Libs.Serialization.xmlPull
+    testImplementation  Libs.Serialization.kXml
+}
