@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="case.category.astrophysics">Astrophysics</string>
+
+    <string name="case.template.authors.one">by %1$s</string>
+    <string name="case.template.authors.two">by %1$s and %2$s</string>
+    <string name="case.template.authors.many">by %1$s</string>
+
+    <string name="case.template.doi">DOI: %1$s</string>
+    <string name="case.template.date">Date: %1$s</string>
+</resources>

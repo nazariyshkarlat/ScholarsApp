@@ -30,6 +30,14 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    buildFeatures {
+        compose true
+    }
+
+    composeOptions {
+        kotlinCompilerVersion DependenciesKt.kotlinVersion
+        kotlinCompilerExtensionVersion Compose.composeVersion
+    }
     kotlinOptions {
         jvmTarget = '1.8'
     }
@@ -37,6 +45,7 @@ android {
 
 dependencies {
     implementation project(':domain')
+    implementation project(':core')
 
     implementation Compose.animation
     implementation Compose.iconsExtended
@@ -53,10 +62,14 @@ dependencies {
     implementation Core.appCompat
     implementation Core.material
 
-    implementation Libs.Coroutines.android
+    implementation Libs.Accompanist.insets
 
-    implementation Libs.Coil.library
-    implementation Libs.Coil.base
+    implementation Libs.Koin.core
+    implementation Libs.Koin.android
+    implementation Libs.Koin.androidCompat
+    implementation Libs.Koin.compose
+
+    implementation Libs.Coroutines.android
 
     implementation Libs.Serialization.json
 

@@ -1,5 +1,6 @@
 package com.example.composeexample.data.use_case.get_articles.entity
 
+import com.example.composeexample.domain.extensions.date.date
 import com.example.composeexample.domain.feature.articles.entity.Article
 import kotlinx.serialization.Serializable
 import nl.adaptivity.xmlutil.serialization.XmlElement
@@ -127,7 +128,7 @@ fun List<ArticleEntity>.toArticles() = this.map { it.toArticle() }
 fun ArticleEntity.toArticle() = Article(
     id = id,
     updated = updated,
-    published = published,
+    published = published.date,
     title = title,
     summary = summary,
     doi = doi,

@@ -9,7 +9,7 @@ object Configs {
     const val VersionName = "1.0"
 }
 
-private const val kotlinVersion = "1.5.10"
+const val kotlinVersion = "1.5.10"
 
 object ClassPaths {
     private const val gradleVersion = "7.1.0-alpha03"
@@ -19,9 +19,9 @@ object ClassPaths {
 }
 
 object Compose {
-    private const val composeVersion = "1.0.0-beta09"
-    private const val composeActivityVersion = "1.3.0-beta02"
-    private const val composeNavigationVersion = "2.4.0-alpha03"
+    const val composeVersion = "1.0.0-rc02"
+    private const val composeActivityVersion = "1.3.0-rc02"
+    private const val composeNavigationVersion = "2.4.0-alpha04"
     private const val composeLifecycleViewModelVersion = "1.0.0-alpha07"
 
     const val animation = "androidx.compose.animation:animation:$composeVersion"
@@ -71,7 +71,7 @@ object Libs {
         const val android = "io.insert-koin:koin-android:$version"
         const val androidCompat = "io.insert-koin:koin-android-compat:$version"
         const val test = "io.insert-koin:koin-test:$version"
-
+        const val compose = "io.insert-koin:koin-androidx-compose:$version"
     }
 
     object Room {
@@ -82,19 +82,18 @@ object Libs {
         const val ktx = "androidx.room:room-ktx:$version"
     }
 
-    object Coil {
-        private const val version = "1.2.2"
-
-        const val library = "io.coil-kt:coil:$version"
-        const val base = "io.coil-kt:coil-base:$version"
-    }
-
     object Ktor {
         private const val version = "1.6.0"
 
         const val client = "io.ktor:ktor-client-android:$version"
         const val logging = "io.ktor:ktor-client-logging-jvm:$version"
         const val serializationClient = "io.ktor:ktor-client-serialization-jvm:$version"
+    }
+
+    object Accompanist {
+        private const val version = "0.14.0"
+
+        const val insets = "com.google.accompanist:accompanist-insets:$version"
     }
 
     object Serialization {

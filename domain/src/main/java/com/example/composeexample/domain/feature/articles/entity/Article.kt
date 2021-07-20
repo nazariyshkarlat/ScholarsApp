@@ -1,18 +1,22 @@
 package com.example.composeexample.domain.feature.articles.entity
 
+import com.example.composeexample.domain.extensions.date.DateSerializer
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.UseSerializers
+import java.util.*
 
 @Serializable
 data class Article(
     val id: String,
     val updated: String,
-    val published: String,
+    @Serializable(with = DateSerializer::class)
+    val published: Date,
     val title: String,
     val summary: String,
     val authors: List<Author>,
-    val doi: String? = null,
+    val doi: String?,
     val comment: String,
-    val journalRef: String? = null,
+    val journalRef: String?,
     val primaryCategory: Category,
     val links: List<ArticleLink>,
     val category: Category
@@ -20,10 +24,10 @@ data class Article(
 
 @Serializable
 data class ArticleLink(
-    val title: String? = null,
+    val title: String?,
     val href: String,
     val rel: String,
-    val type: String? = null
+    val type: String?
 )
 
 @Serializable

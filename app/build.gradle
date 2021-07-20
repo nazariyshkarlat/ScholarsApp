@@ -52,7 +52,8 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion "1.0.0-beta09"
+        kotlinCompilerVersion DependenciesKt.kotlinVersion
+        kotlinCompilerExtensionVersion Compose.composeVersion
     }
 
     kotlinOptions {
@@ -68,6 +69,7 @@ dependencies {
     implementation project(':domain')
     implementation project(':presentation')
     implementation project(':data')
+    implementation project(':core')
 
     implementation Compose.animation
     implementation Compose.iconsExtended
@@ -84,9 +86,6 @@ dependencies {
     implementation Core.appCompat
     implementation Core.material
 
-    implementation Libs.Coil.library
-    implementation Libs.Coil.base
-
     implementation Libs.Coroutines.android
     implementation Libs.Coroutines.core
 
@@ -102,12 +101,13 @@ dependencies {
     implementation Libs.Koin.core
     implementation Libs.Koin.android
     implementation Libs.Koin.androidCompat
+    implementation Libs.Koin.compose
 
-    androidTestImplementation Libs.Koin.test
     androidTestImplementation Compose.uiTest
     testImplementation Libs.Coroutines.test
     testImplementation Tests.junit
     testImplementation Tests.junitKotlin
+    testImplementation Libs.Koin.test
 
     testImplementation Libs.Serialization.xmlPull
     testImplementation  Libs.Serialization.kXml

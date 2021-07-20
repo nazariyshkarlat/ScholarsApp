@@ -4,6 +4,7 @@
     <bytecodeTargetLevel target="1.8">
       <module name="Compose_Example.app" target="11" />
       <module name="Compose_Example.buildSrc" target="11" />
+      <module name="Compose_Example.core" target="11" />
       <module name="Compose_Example.data" target="11" />
       <module name="Compose_Example.presentation" target="11" />
     </bytecodeTargetLevel>

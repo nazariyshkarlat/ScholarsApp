@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.receiveAsFlow
 abstract class BaseViewModel<State, UiState, Intent, ClientEvent, ClientAction, InternalEvent> : ViewModel() {
 
     protected abstract val state: MutableStateFlow<State>
-    protected abstract val uiState: StateFlow<UiState>
+    abstract val uiState: StateFlow<UiState>
 
     protected abstract val _events: Channel<ClientEvent>
     val events by lazy { _events.receiveAsFlow() }

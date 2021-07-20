@@ -17,6 +17,7 @@ dependencies {
     implementation Libs.Coroutines.core
 
     implementation Libs.Serialization.json
+    implementation 'com.google.firebase:protolite-well-known-types:18.0.0'
 
     testImplementation Libs.Coroutines.test
     testImplementation Tests.junit
