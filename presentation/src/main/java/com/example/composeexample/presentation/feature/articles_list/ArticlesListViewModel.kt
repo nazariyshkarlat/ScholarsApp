@@ -1,6 +1,8 @@
 package com.example.composeexample.presentation.feature.articles_list
 
 import androidx.lifecycle.viewModelScope
+import com.example.composeexample.domain.action.ArticlesScreenClientAction
+import com.example.composeexample.domain.action.toArticlesScreenIntent
 import com.example.composeexample.domain.event.ArticlesScreenEvent
 import com.example.composeexample.domain.event.toIntent
 import com.example.composeexample.domain.feature.articles.use_case.GetArticles
@@ -8,10 +10,8 @@ import com.example.composeexample.domain.intent.ArticlesScreenIntent
 import com.example.composeexample.domain.response.event.toArticlesScreenEvent
 import com.example.composeexample.domain.state.ArticlesScreenState
 import com.example.composeexample.domain.state.articlesScreenReducer
-import com.example.composeexample.presentation.feature.articles_list.client.ArticlesScreenClientAction
 import com.example.composeexample.domain.event.ArticlesScreenClientEvent
 import com.example.composeexample.domain.event.articlesScreenEventHandler
-import com.example.composeexample.presentation.feature.articles_list.client.toArticlesScreenIntent
 import com.example.composeexample.presentation.feature.articles_list.state.ArticlesScreenUiState
 import com.example.composeexample.presentation.feature.articles_list.state.toUi
 import kotlinx.coroutines.Dispatchers

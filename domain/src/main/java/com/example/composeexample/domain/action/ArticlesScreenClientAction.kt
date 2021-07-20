@@ -1,4 +1,4 @@
-package com.example.composeexample.presentation.feature.articles_list.client
+package com.example.composeexample.domain.action
 
 import com.example.composeexample.domain.event.ArticlesScreenEvent
 import com.example.composeexample.domain.event.Event

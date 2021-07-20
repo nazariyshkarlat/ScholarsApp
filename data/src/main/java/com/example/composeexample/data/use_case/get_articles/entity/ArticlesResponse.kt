@@ -126,7 +126,7 @@ fun ArticlesResponse.toArticles() = this.articles.map { it.toArticle() }
 fun List<ArticleEntity>.toArticles() = this.map { it.toArticle() }
 
 fun ArticleEntity.toArticle() = Article(
-    id = id,
+    id = id.toDomainId(),
     updated = updated,
     published = published.date,
     title = title,
@@ -139,6 +139,8 @@ fun ArticleEntity.toArticle() = Article(
     links = links.map { it.toDomain() },
     category = category.toDomain()
 )
+
+fun String.toDomainId() = this.split("/").last()
 
 fun ArticleLink.toDomain() = com.example.composeexample.domain.feature.articles.entity.ArticleLink(
     title = title,

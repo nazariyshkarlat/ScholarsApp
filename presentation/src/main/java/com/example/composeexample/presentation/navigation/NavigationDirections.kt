@@ -15,14 +15,29 @@
  */
 package com.example.composeexample.presentation.navigation
 
-import androidx.navigation.compose.NamedNavArgument
-import com.example.composeexample.presentation.navigation.NavigationCommand
+import androidx.navigation.NavType
+import com.example.composeexample.presentation.navigation.NavigationDirections.ArticleDetails.Arguments.ARTICLE_ID
 
 object NavigationDirections {
 
-    val ArticlesList = object : NavigationCommand {
-        override val arguments = emptyList<NamedNavArgument>()
+    object ArticlesList : NavigationCommand() {
+        override val arguments = emptyList<NavigationCommand.Argument>()
 
-        override val destination: String = "articles_list"
+        override val destination: NavigationCommand.Destination =
+            destinationOf("articles_list")
+    }
+
+    object ArticleDetails : NavigationCommand() {
+
+        object Arguments{
+            const val ARTICLE_ID = "article_id"
+        }
+
+        override val arguments = listOf(
+            argumentOf(ARTICLE_ID, isOptional = false, navType = NavType.StringType)
+        )
+
+        override val destination: NavigationCommand.Destination =
+            destinationOf("article_details", arguments)
     }
 }

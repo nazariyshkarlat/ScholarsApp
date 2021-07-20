@@ -4,9 +4,9 @@ import kotlinx.coroutines.flow.MutableStateFlow
 
 object NavigationManager {
 
-    val command = MutableStateFlow(NavigationCommand.Default)
+    val command = MutableStateFlow(NavigationCommand.Default.create())
 
-    fun navigate(directions: NavigationCommand) {
+    fun navigate(directions: NavigationCommand.CommandResult) {
         command.value = directions
     }
 }

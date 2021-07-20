@@ -20,6 +20,9 @@ import androidx.compose.ui.unit.dp
 import com.example.composeexample.presentation.feature.articles_list.ArticlesListViewModel
 import com.example.composeexample.presentation.feature.articles_list.entity.ArticleListItemUi
 import com.example.composeexample.presentation.feature.articles_list.state.ArticlesScreenUiState
+import com.example.composeexample.presentation.navigation.NavigationCommand
+import com.example.composeexample.presentation.navigation.NavigationDirections
+import com.example.composeexample.presentation.navigation.NavigationManager
 import com.example.composeexample.presentation.theme.MediumDimension
 import com.example.composeexample.presentation.theme.SmallDimension
 
@@ -28,7 +31,13 @@ fun ArticlesListScreen(viewModel: ArticlesListViewModel) {
     val uiState by viewModel.uiState.collectAsState()
 
     val onItemClick: (id: String) -> Unit = {
-
+        NavigationManager.navigate(
+            NavigationDirections.ArticleDetails.create(
+                arguments = mapOf(
+                    NavigationDirections.ArticleDetails.Arguments.ARTICLE_ID to it
+                )
+            )
+        )
     }
 
     when(val state = uiState){
