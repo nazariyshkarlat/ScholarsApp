@@ -15,7 +15,7 @@ val networkModule = module {
     single{
         HttpClient {
             install(HttpTimeout) {
-                requestTimeoutMillis = 25 * 1000 // 25 seconds
+                requestTimeoutMillis = 25 * 1000
             }
             install(XmlFeature) {
                 serializer = XmlSerializer.Default()
@@ -31,7 +31,6 @@ val networkModule = module {
             install(DefaultRequest) {
                 accept(ContentType.Application.Xml)
             }
-
         }
     }
 }

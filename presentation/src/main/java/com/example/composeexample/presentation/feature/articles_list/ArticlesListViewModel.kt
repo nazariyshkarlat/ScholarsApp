@@ -8,7 +8,6 @@ import com.example.composeexample.domain.intent.ArticlesScreenIntent
 import com.example.composeexample.domain.response.event.toArticlesScreenEvent
 import com.example.composeexample.domain.state.ArticlesScreenState
 import com.example.composeexample.domain.state.articlesScreenReducer
-import com.example.composeexample.presentation.base.BaseViewModel
 import com.example.composeexample.presentation.feature.articles_list.client.ArticlesScreenClientAction
 import com.example.composeexample.domain.event.ArticlesScreenClientEvent
 import com.example.composeexample.domain.event.articlesScreenEventHandler
@@ -22,7 +21,7 @@ import kotlinx.coroutines.launch
 
 class ArticlesListViewModel(
     private val getArticles: GetArticles
-) : BaseViewModel<ArticlesScreenState, ArticlesScreenUiState, ArticlesScreenIntent, ArticlesScreenClientEvent, ArticlesScreenClientAction, ArticlesScreenEvent>() {
+) : BaseViewModel() {
 
     override val state: MutableStateFlow<ArticlesScreenState> = MutableStateFlow(
         value = ArticlesScreenState.Loading
@@ -63,3 +62,5 @@ class ArticlesListViewModel(
         }
     }
 }
+
+private typealias BaseViewModel = com.example.composeexample.presentation.base.BaseViewModel<ArticlesScreenState, ArticlesScreenUiState, ArticlesScreenIntent, ArticlesScreenClientEvent, ArticlesScreenClientAction, ArticlesScreenEvent>

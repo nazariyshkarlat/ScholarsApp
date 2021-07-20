@@ -1,9 +1,12 @@
 package com.example.composeexample.data.use_case.get_articles.repository
 
+import com.example.composeexample.data.data_source.DataSource
 import com.example.composeexample.data.data_source.DataSourceProvider
 import com.example.composeexample.data.data_source.api.toResult
 import com.example.composeexample.data.data_source.cache.toResult
 import com.example.composeexample.data.use_case.get_articles.data_source.GetArticlesDataSource
+import com.example.composeexample.data.use_case.get_articles.entity.ArticleEntity
+import com.example.composeexample.data.use_case.get_articles.entity.ArticlesResponse
 import com.example.composeexample.data.use_case.get_articles.entity.toArticles
 import com.example.composeexample.domain.feature.articles.entity.Article
 import com.example.composeexample.domain.feature.articles.repository.ArticlesRepository
@@ -12,7 +15,7 @@ import com.example.composeexample.domain.result.Result
 
 class ArticlesRepositoryImpl(
     private val dataSourceProvider: DataSourceProvider,
-    private val articlesDataSource: GetArticlesDataSource): ArticlesRepository {
+    private val articlesDataSource: DataSource<ArticlesResponse, List<ArticleEntity>>): ArticlesRepository {
     override suspend fun getArticles(): Result<List<Article>> =
         when(dataSourceProvider.dataSourceType){
             DataSourceType.CACHE -> articlesDataSource.fromCache.makeRequest().toResult {
