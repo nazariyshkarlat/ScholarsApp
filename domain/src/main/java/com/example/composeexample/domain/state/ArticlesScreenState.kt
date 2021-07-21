@@ -1,15 +1,17 @@
 package com.example.composeexample.domain.state
 
-import com.example.composeexample.domain.feature.articles.entity.Article
+import com.example.composeexample.domain.feature.article.entity.Article
+import com.example.composeexample.domain.feature.article.entity.Category
 import com.example.composeexample.domain.intent.ArticlesScreenIntent
 import com.example.composeexample.domain.intent.Intent
 import com.example.composeexample.domain.mvi.reducer
 
 sealed class ArticlesScreenState {
-    object Loading : ArticlesScreenState()
-    data class Error(val errorType: ErrorType) : ArticlesScreenState()
-    object EmptyArticlesScreen : ArticlesScreenState()
-    data class ArticlesListScreen(val articles: List<Article>) : ArticlesScreenState()
+    abstract val category: Category
+    data class Loading(override val category: Category) : ArticlesScreenState()
+    data class Error(val errorType: ErrorType, override val category: Category) : ArticlesScreenState()
+    data class EmptyArticlesScreen(override val category: Category) : ArticlesScreenState()
+    data class ArticlesListScreen(val articles: List<Article>, override val category: Category) : ArticlesScreenState()
 }
 
 enum class ErrorType{
@@ -20,22 +22,22 @@ fun articlesScreenReducer() = reducer<ArticlesScreenState, ArticlesScreenIntent>
     when(intent){
         Intent.DoNothing -> currentState
         is ArticlesScreenIntent.ShowArticlesList -> {
-            ArticlesScreenState.ArticlesListScreen(articles = intent.articles)
+            ArticlesScreenState.ArticlesListScreen(articles = intent.articles, category = currentState.category)
         }
         ArticlesScreenIntent.ShowEmptyScreen -> {
-            ArticlesScreenState.EmptyArticlesScreen
+            ArticlesScreenState.EmptyArticlesScreen(category = currentState.category)
         }
         ArticlesScreenIntent.ShowLoadingScreen -> {
-            ArticlesScreenState.Loading
+            ArticlesScreenState.Loading(category = currentState.category)
         }
         ArticlesScreenIntent.ShowNetworkError -> {
-            ArticlesScreenState.Error(errorType = ErrorType.NETWORK_ERROR)
+            ArticlesScreenState.Error(errorType = ErrorType.NETWORK_ERROR, category = currentState.category)
         }
         ArticlesScreenIntent.ShowServerError -> {
-            ArticlesScreenState.Error(errorType = ErrorType.SERVER_ERROR)
+            ArticlesScreenState.Error(errorType = ErrorType.SERVER_ERROR, category = currentState.category)
         }
         ArticlesScreenIntent.ShowExceptionScreen -> {
-            ArticlesScreenState.Error(errorType = ErrorType.EXCEPTION)
+            ArticlesScreenState.Error(errorType = ErrorType.EXCEPTION, category = currentState.category)
         }
         is ArticlesScreenIntent.ShowArticleScreen -> currentState
     }

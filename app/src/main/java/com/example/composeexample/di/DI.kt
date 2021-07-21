@@ -2,6 +2,8 @@ package com.example.composeexample.di
 
 import android.app.Application
 import com.example.composeexample.core.putApplication
+import com.example.composeexample.di.feature.articleDetailsModule
+import com.example.composeexample.di.feature.articlesListModule
 import com.example.composeexample.di.feature.articlesModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -16,7 +18,9 @@ object DI{
             androidContext(application)
             modules(
                 networkModule,
-                articlesModule
+                articlesModule,
+                articlesListModule,
+                articleDetailsModule
             )
         }
     }

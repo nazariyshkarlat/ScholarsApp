@@ -1,6 +1,6 @@
 package com.example.composeexample.domain.intent
 
-import com.example.composeexample.domain.feature.articles.entity.Article
+import com.example.composeexample.domain.feature.article.entity.Article
 
 sealed interface ArticlesScreenIntent {
     object ShowLoadingScreen : ArticlesScreenIntent

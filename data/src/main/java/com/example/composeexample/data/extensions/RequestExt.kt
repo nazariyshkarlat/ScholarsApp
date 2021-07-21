@@ -1,6 +1,6 @@
 package com.example.composeexample.data.extensions
 
-import com.example.composeexample.data.data_source.api.ServerResult
+import com.example.composeexample.data.data_source.network.ServerResult
 import io.ktor.client.features.*
 import io.ktor.utils.io.errors.*
 import java.net.ConnectException

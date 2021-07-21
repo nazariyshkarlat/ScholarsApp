@@ -49,6 +49,11 @@ dependencies {
     implementation Libs.Serialization.serialization
     implementation Libs.Serialization.ktor
 
+    implementation Libs.Koin.core
+    implementation Libs.Koin.android
+    implementation Libs.Koin.androidCompat
+    implementation Libs.Koin.compose
+
     implementation Libs.Ktor.client
     implementation Libs.Ktor.logging
     implementation Libs.Ktor.serializationClient

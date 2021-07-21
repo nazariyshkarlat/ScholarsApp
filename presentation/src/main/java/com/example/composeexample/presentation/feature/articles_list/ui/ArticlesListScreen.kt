@@ -7,6 +7,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.runtime.Composable
@@ -15,11 +16,13 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.example.composeexample.presentation.feature.articles_list.ArticlesListViewModel
+import com.example.composeexample.domain.action.ArticlesScreenClientAction
 import com.example.composeexample.presentation.feature.articles_list.entity.ArticleListItemUi
 import com.example.composeexample.presentation.feature.articles_list.state.ArticlesScreenUiState
+import com.example.composeexample.presentation.feature.articles_list.view_model.ArticlesListViewModel
 import com.example.composeexample.presentation.navigation.NavigationCommand
 import com.example.composeexample.presentation.navigation.NavigationDirections
 import com.example.composeexample.presentation.navigation.NavigationManager
@@ -31,20 +34,22 @@ fun ArticlesListScreen(viewModel: ArticlesListViewModel) {
     val uiState by viewModel.uiState.collectAsState()
 
     val onItemClick: (id: String) -> Unit = {
-        NavigationManager.navigate(
-            NavigationDirections.ArticleDetails.create(
-                arguments = mapOf(
-                    NavigationDirections.ArticleDetails.Arguments.ARTICLE_ID to it
-                )
-            )
-        )
+        viewModel.consumeClientAction(ArticlesScreenClientAction.ArticleClick(it))
     }
 
-    when(val state = uiState){
-        is ArticlesScreenUiState.ArticlesListScreen -> ArticlesListScreen(articles = state.articles, onItemClick)
-        ArticlesScreenUiState.EmptyArticlesScreen -> EmptyScreen()
-        is ArticlesScreenUiState.Error -> ErrorScreen(errorText = state.errorType.name)
-        ArticlesScreenUiState.Loading -> LoadingScreen()
+    Column(
+        modifier = Modifier.fillMaxSize()
+    ) {
+        Toolbar(category = uiState.category)
+        when (val state = uiState) {
+            is ArticlesScreenUiState.ArticlesListScreen -> ArticlesListScreen(
+                articles = state.articles,
+                onItemClick
+            )
+            is ArticlesScreenUiState.EmptyArticlesScreen -> EmptyScreen()
+            is ArticlesScreenUiState.Error -> ErrorScreen(errorText = state.errorType.name)
+            is ArticlesScreenUiState.Loading -> LoadingScreen()
+        }
     }
 }
 
@@ -61,6 +66,32 @@ private fun ArticlesListScreen(
 }
 
 @Composable
+private fun Toolbar(category: String){
+    Surface(
+        color = MaterialTheme.colors.background,
+        elevation = SmallDimension
+    ) {
+        Row(
+            Modifier
+                .fillMaxWidth()
+                .padding(
+                    start = MediumDimension,
+                    end = MediumDimension,
+                    top = MediumDimension,
+                    bottom = MediumDimension
+                )
+                .wrapContentHeight()
+        ) {
+            Text(
+                text = category,
+                color = MaterialTheme.colors.onBackground,
+                style = MaterialTheme.typography.h2
+            )
+        }
+    }
+}
+
+@Composable
 private fun ArticleItem(article: ArticleListItemUi, onClick: (id: String) -> Unit){
     Column(modifier = Modifier
         .fillMaxWidth()
@@ -71,7 +102,8 @@ private fun ArticleItem(article: ArticleListItemUi, onClick: (id: String) -> Uni
             onClick = {
                 onClick.invoke(article.id)
             }
-        ).padding(
+        )
+        .padding(
             top = SmallDimension,
             bottom = SmallDimension,
             start = MediumDimension,
@@ -81,13 +113,15 @@ private fun ArticleItem(article: ArticleListItemUi, onClick: (id: String) -> Uni
         Text(
             text = article.title,
             style = MaterialTheme.typography.subtitle1,
-            textAlign = TextAlign.Start
+            textAlign = TextAlign.Start,
+            color = MaterialTheme.colors.onBackground
         )
         Text(
             modifier = Modifier.padding(top = SmallDimension),
             text = article.authors,
             style = MaterialTheme.typography.subtitle2,
-            textAlign = TextAlign.Start
+            textAlign = TextAlign.Start,
+            color = MaterialTheme.colors.onBackground
         )
         Row(modifier = Modifier
             .fillMaxWidth()
@@ -102,13 +136,15 @@ private fun ArticleItem(article: ArticleListItemUi, onClick: (id: String) -> Uni
             Text(
                 modifier = Modifier.padding(start = SmallDimension),
                 text = article.date,
-                style = MaterialTheme.typography.subtitle2
+                style = MaterialTheme.typography.subtitle2,
+                color = MaterialTheme.colors.onBackground
             )
             article.doi?.let {
                 Text(
                     modifier = Modifier.padding(start = SmallDimension),
                     text = it,
-                    style = MaterialTheme.typography.subtitle2
+                    style = MaterialTheme.typography.subtitle2,
+                    color = MaterialTheme.colors.onBackground
                 )
             }
         }
@@ -133,13 +169,13 @@ private fun LoadingScreen(){
 
 @Composable
 private fun ErrorScreen(errorText: String){
-    Box{
+    Box(modifier = Modifier.fillMaxSize()){
         Text(
             modifier = Modifier
                 .wrapContentSize()
                 .align(Alignment.Center),
             textAlign = TextAlign.Center,
-            style = MaterialTheme.typography.h1,
+            style = MaterialTheme.typography.subtitle1,
             color = MaterialTheme.colors.error,
             text = errorText
         )

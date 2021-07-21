@@ -1,6 +1,6 @@
 package com.example.composeexample.presentation.feature.articles_list.entity
 
-import com.example.composeexample.domain.feature.articles.entity.Article
+import com.example.composeexample.domain.feature.article.entity.Article
 import com.example.composeexample.presentation.extensions.formattedDate
 import com.example.composeexample.presentation.extensions.str
 import com.example.presentation.R
@@ -32,12 +32,12 @@ private fun String.toDoi() = R.string.case_template_doi.str(this)
 
 private fun Date.toPublishedDate() = R.string.case_template_date.str(this.formattedDate)
 
-private fun com.example.composeexample.domain.feature.articles.entity.Category.toUi() =
+fun com.example.composeexample.domain.feature.article.entity.Category.toUi() =
     when(com.example.composeexample.domain.entity.Category.byName(term)){
         com.example.composeexample.domain.entity.Category.ASTROPHYSICS -> R.string.case_category_astrophysics.str
     }
 
-private fun List<com.example.composeexample.domain.feature.articles.entity.Author>.toUi() =
+private fun List<com.example.composeexample.domain.feature.article.entity.Author>.toUi() =
     when(this.size){
         1 -> R.string.case_template_authors_one.str(first().name)
         2 -> R.string.case_template_authors_many.str(*this.map { it.name }.toTypedArray())
