@@ -8,5 +8,5 @@ import com.example.composeexample.domain.feature.article.entity.Article
 
 class ArticleDetailsDataSourceProvider(val dataSource: DataSource<ArticleEntity, Article, Article>): DataSourceProvider {
     override val dataSourceType: DataSourceType
-        get() = DataSourceType.MEMORY
+        get() = DataSourceType.Memory
 }

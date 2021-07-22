@@ -29,17 +29,17 @@ class ArticlesRepositoryImpl(
     ): ArticlesRepository {
     override suspend fun getArticles(): Result<List<Article>> =
         when(articlesDataSourceProvider.dataSourceType){
-            DataSourceType.CACHE -> articlesDataSource.getFromCache(
+            DataSourceType.Cache -> articlesDataSource.getFromCache(
                 GetArticlesCacheRequest()
             ).toResult {
                 it
             }
-            DataSourceType.NETWORK -> articlesDataSource.getFromServer(
+            DataSourceType.Network -> articlesDataSource.getFromServer(
                 GetArticlesNetworkRequest()
             ).toResult {
                 it.toArticles()
             }
-            DataSourceType.MEMORY -> {
+            DataSourceType.Memory -> {
                 throw UnsupportedOperationException()
             }
         }
@@ -47,7 +47,7 @@ class ArticlesRepositoryImpl(
 
     override suspend fun getArticle(articleId: String): Result<Article> =
         when(articleDetailsDataSourceProvider.dataSourceType){
-           DataSourceType.MEMORY -> {
+           DataSourceType.Memory -> {
                articleDetailsDataSource.getFromMemory(
                    GetArticleDetailsMemoryRequest(
                        articleId = articleId
@@ -63,7 +63,7 @@ class ArticlesRepositoryImpl(
 
     override suspend fun saveArticle(article: Article) {
         when (articleDetailsDataStoreProvider.dataSourceType) {
-            DataSourceType.MEMORY -> {
+            DataSourceType.Memory -> {
                 articleDetailsDataStore.saveToMemory(
                     SaveArticleDetailsMemoryRequest(
                         article = article

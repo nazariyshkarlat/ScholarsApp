@@ -1,6 +1,5 @@
 package com.example.composeexample.domain.response.event
 
-import com.example.composeexample.domain.feature.article.entity.Article
 import com.example.composeexample.domain.result.Result
 
 sealed interface SaveArticleEvent {

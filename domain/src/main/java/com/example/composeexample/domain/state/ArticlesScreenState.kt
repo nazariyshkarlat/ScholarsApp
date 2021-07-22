@@ -15,7 +15,7 @@ sealed class ArticlesScreenState {
 }
 
 enum class ErrorType{
-    SERVER_ERROR, NETWORK_ERROR, EXCEPTION
+    ServerError, NetworkError, Exception
 }
 
 fun articlesScreenReducer() = reducer<ArticlesScreenState, ArticlesScreenIntent> { currentState, intent ->
@@ -31,13 +31,13 @@ fun articlesScreenReducer() = reducer<ArticlesScreenState, ArticlesScreenIntent>
             ArticlesScreenState.Loading(category = currentState.category)
         }
         ArticlesScreenIntent.ShowNetworkError -> {
-            ArticlesScreenState.Error(errorType = ErrorType.NETWORK_ERROR, category = currentState.category)
+            ArticlesScreenState.Error(errorType = ErrorType.NetworkError, category = currentState.category)
         }
         ArticlesScreenIntent.ShowServerError -> {
-            ArticlesScreenState.Error(errorType = ErrorType.SERVER_ERROR, category = currentState.category)
+            ArticlesScreenState.Error(errorType = ErrorType.ServerError, category = currentState.category)
         }
         ArticlesScreenIntent.ShowExceptionScreen -> {
-            ArticlesScreenState.Error(errorType = ErrorType.EXCEPTION, category = currentState.category)
+            ArticlesScreenState.Error(errorType = ErrorType.Exception, category = currentState.category)
         }
         is ArticlesScreenIntent.ShowArticleScreen -> currentState
     }

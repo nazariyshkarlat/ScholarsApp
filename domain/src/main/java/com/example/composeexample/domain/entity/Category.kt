@@ -1,7 +1,7 @@
 package com.example.composeexample.domain.entity
 
 enum class Category(val category: String) {
-    ASTROPHYSICS("astro-ph");
+    Astrophysics("astro-ph");
 
 
     companion object {

@@ -121,11 +121,11 @@ data class Title(
     val type: String
 )
 
-fun ArticlesResponse.toArticles() = this.articles.map { it.toArticle() }
+internal fun ArticlesResponse.toArticles() = this.articles.map { it.toArticle() }
 
-fun List<ArticleEntity>.toArticles() = this.map { it.toArticle() }
+internal fun List<ArticleEntity>.toArticles() = this.map { it.toArticle() }
 
-fun ArticleEntity.toArticle() = Article(
+internal fun ArticleEntity.toArticle() = Article(
     id = id.toDomainId(),
     updated = updated,
     published = published.date,
@@ -140,25 +140,25 @@ fun ArticleEntity.toArticle() = Article(
     category = category.toDomain()
 )
 
-fun String.toDomainId() = this.split("/").last()
+internal fun String.toDomainId() = this.split("/").last()
 
-fun ArticleLink.toDomain() = com.example.composeexample.domain.feature.article.entity.ArticleLink(
+internal fun ArticleLink.toDomain() = com.example.composeexample.domain.feature.article.entity.ArticleLink(
     title = title,
     href = href,
     rel = rel,
     type = type
 )
 
-fun Category.toDomain() = com.example.composeexample.domain.feature.article.entity.Category(
+internal fun Category.toDomain() = com.example.composeexample.domain.feature.article.entity.Category(
     term = term,
     scheme = scheme
 )
 
-fun PrimaryCategory.toDomain() = com.example.composeexample.domain.feature.article.entity.Category(
+internal fun PrimaryCategory.toDomain() = com.example.composeexample.domain.feature.article.entity.Category(
     term = term,
     scheme = scheme
 )
 
-fun Author.toDomain() = com.example.composeexample.domain.feature.article.entity.Author(
+internal fun Author.toDomain() = com.example.composeexample.domain.feature.article.entity.Author(
     name = name
 )

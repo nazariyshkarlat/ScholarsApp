@@ -34,7 +34,7 @@ private fun Date.toPublishedDate() = R.string.case_template_date.str(this.format
 
 fun com.example.composeexample.domain.feature.article.entity.Category.toUi() =
     when(com.example.composeexample.domain.entity.Category.byName(term)){
-        com.example.composeexample.domain.entity.Category.ASTROPHYSICS -> R.string.case_category_astrophysics.str
+        com.example.composeexample.domain.entity.Category.Astrophysics -> R.string.case_category_astrophysics.str
     }
 
 private fun List<com.example.composeexample.domain.feature.article.entity.Author>.toUi() =

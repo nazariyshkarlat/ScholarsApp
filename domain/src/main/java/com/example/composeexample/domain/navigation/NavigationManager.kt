@@ -1,4 +1,4 @@
-package com.example.composeexample.presentation.navigation
+package com.example.composeexample.domain.navigation
 
 import kotlinx.coroutines.flow.MutableStateFlow
 

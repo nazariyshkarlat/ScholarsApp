@@ -10,5 +10,5 @@ abstract class BaseNetworkRequest<T: Any>: KoinComponent {
     val httpClient: HttpClient by inject()
     val baseUrl = BuildConfig.BASE_URL
 
-    abstract suspend fun makeRequest(): ServerResult<T>
+    internal abstract suspend fun makeRequest(): NetworkResult<T>
 }

@@ -1,22 +1,4 @@
-/*
- * Copyright 2021 Paulo Pereira
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     https://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-package com.example.composeexample.presentation.navigation
-
-import androidx.navigation.NavType
-import androidx.navigation.compose.navArgument
+package com.example.composeexample.domain.navigation
 
 abstract class NavigationCommand {
 
@@ -28,26 +10,19 @@ abstract class NavigationCommand {
     val route
     get() = destination.toString()
 
-    val navArguments
-    get() = arguments.map {
-        navArgument(name = it.name){
-            type = it.type
-        }
-    }
-
     companion object {
         val Default = object : NavigationCommand() {
             override val arguments = emptyList<Argument>()
             override val destination = Destination(name = "")
         }
 
-        fun argumentOf(name: String, isOptional: Boolean, navType: NavType<*>) = Argument(name, isOptional, navType)
+        fun argumentOf(name: String, isOptional: Boolean, navType: NavType) = Argument(name, isOptional, navType)
 
         fun destinationOf(name: String, arguments: List<Argument> = emptyList()) = Destination(name, arguments)
     }
 
 
-    data class Argument(val name: String, val isOptional: Boolean, val type: NavType<*>)
+    data class Argument(val name: String, val isOptional: Boolean, val type: NavType)
 
     class Destination(private val name: String, private val arguments: List<Argument> = emptyList()){
         override fun toString() = buildString {
@@ -84,5 +59,18 @@ abstract class NavigationCommand {
             arguments.toList().fold(initial = pathTemplate) { acc, pair->
                 acc.replace("{${pair.first}}", pair.second.toString())
             }
+    }
+
+    enum class NavType{
+        Int,
+        IntArray,
+        Long,
+        LongArray,
+        Float,
+        FloatArray,
+        Bool,
+        BoolArray,
+        String,
+        StringArray
     }
 }

@@ -16,16 +16,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.example.composeexample.domain.action.ArticlesScreenClientAction
 import com.example.composeexample.presentation.feature.articles_list.entity.ArticleListItemUi
 import com.example.composeexample.presentation.feature.articles_list.state.ArticlesScreenUiState
 import com.example.composeexample.presentation.feature.articles_list.view_model.ArticlesListViewModel
-import com.example.composeexample.presentation.navigation.NavigationCommand
-import com.example.composeexample.presentation.navigation.NavigationDirections
-import com.example.composeexample.presentation.navigation.NavigationManager
 import com.example.composeexample.presentation.theme.MediumDimension
 import com.example.composeexample.presentation.theme.SmallDimension
 

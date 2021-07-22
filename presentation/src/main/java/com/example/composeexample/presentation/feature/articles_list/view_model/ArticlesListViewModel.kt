@@ -14,12 +14,10 @@ import com.example.composeexample.domain.event.ArticlesScreenClientEvent
 import com.example.composeexample.domain.event.articlesScreenEventHandler
 import com.example.composeexample.domain.feature.article.article_details.use_case.save_article.SaveArticle
 import com.example.composeexample.domain.feature.article.entity.Category
-import com.example.composeexample.presentation.extensions.str
 import com.example.composeexample.presentation.feature.articles_list.state.ArticlesScreenUiState
 import com.example.composeexample.presentation.feature.articles_list.state.toUi
-import com.example.composeexample.presentation.navigation.NavigationDirections
-import com.example.composeexample.presentation.navigation.NavigationManager
-import com.example.presentation.R
+import com.example.composeexample.domain.navigation.NavigationDirections
+import com.example.composeexample.domain.navigation.NavigationManager
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.*
@@ -32,7 +30,7 @@ class ArticlesListViewModel(
 
     override val state: MutableStateFlow<ArticlesScreenState> = MutableStateFlow(
         value = ArticlesScreenState.Loading(
-            category = Category(term = com.example.composeexample.domain.entity.Category.ASTROPHYSICS.category, scheme = "")
+            category = Category(term = com.example.composeexample.domain.entity.Category.Astrophysics.category, scheme = "")
         )
     )
 

@@ -11,6 +11,6 @@ sealed class CacheResult<out T: Any> {
 
 fun <T: Any, R: Any> CacheResult<T>.toResult(transformation: (T) -> R) : Result<R> = when(this){
     is CacheResult.DataNotFound -> Result.CacheIsEmpty
-    is CacheResult.Success -> Result.Success(data = transformation(data), dataSourceType = DataSourceType.CACHE)
+    is CacheResult.Success -> Result.Success(data = transformation(data), dataSourceType = DataSourceType.Cache)
     is CacheResult.Exception -> Result.LocalException(cause = cause)
 }

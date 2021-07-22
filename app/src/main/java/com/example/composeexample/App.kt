@@ -11,9 +11,4 @@ class App : Application(){
         DI.init(this)
     }
 
-    companion object{
-        val instance: App
-        get() = GlobalContext.get().get()
-    }
-
 }

@@ -16,7 +16,8 @@ abstract class MemoryStorage<T: Any> {
     }
 
     fun getAllElements(): MemoryResult<List<T>> = try{
-        MemoryResult.Success(data = memory.map { it.data })
+        if(memory.isNotEmpty()) MemoryResult.Success(data = memory.map { it.data })
+        else MemoryResult.DataNotFound
     }catch (e: Exception){
         MemoryResult.DataNotFound
     }

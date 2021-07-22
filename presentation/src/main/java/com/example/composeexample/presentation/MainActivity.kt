@@ -16,14 +16,13 @@ import com.example.composeexample.presentation.feature.article_details.ui.Articl
 import com.example.composeexample.presentation.feature.article_details.view_model.ArticleDetailsViewModel
 import com.example.composeexample.presentation.feature.articles_list.ui.ArticlesListScreen
 import com.example.composeexample.presentation.feature.articles_list.view_model.ArticlesListViewModel
-import com.example.composeexample.presentation.navigation.NavigationDirections
-import com.example.composeexample.presentation.navigation.NavigationManager
+import com.example.composeexample.domain.navigation.NavigationDirections
+import com.example.composeexample.domain.navigation.NavigationManager
+import com.example.composeexample.presentation.extensions.navArguments
 import com.example.composeexample.presentation.theme.AppTheme
 import com.google.accompanist.insets.ProvideWindowInsets
 import com.google.accompanist.insets.navigationBarsPadding
 import com.google.accompanist.insets.statusBarsPadding
-import org.koin.androidx.compose.getViewModel
-import org.koin.androidx.viewmodel.ext.android.getViewModel
 import org.koin.core.parameter.parametersOf
 
 class MainActivity : AppCompatActivity() {
