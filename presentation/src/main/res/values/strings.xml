@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">ScholarsApp</string>
+
     <string name="case.category.astrophysics">Astrophysics</string>
 
     <string name="case.template.authors.one">by %1$s</string>
@@ -7,5 +9,14 @@
     <string name="case.template.authors.many">by %1$s</string>
 
     <string name="case.template.doi">DOI: %1$s</string>
-    <string name="case.template.date">Date: %1$s</string>
+    <string name="case.label.doi">DOI:</string>
+    <string name="case.label.comments">Comments:</string>
+    <string name="case.label.subjects">Subjects:</string>
+    <string name="case.label.links">Links</string>
+    <string name="case.label.submission_history">Submission history</string>
+
+    <string name="screen.articles.item.template.published_date">Date: %1$s</string>
+
+    <string name="screen.article_details.template.published_date">Published: %1$s</string>
+    <string name="screen.article_details.template.updated_date">Updated: %1$s</string>
 </resources>

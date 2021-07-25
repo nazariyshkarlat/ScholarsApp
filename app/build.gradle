@@ -56,6 +56,7 @@ android {
         kotlinCompilerExtensionVersion Compose.composeVersion
     }
 
+
     kotlinOptions {
         jvmTarget = "1.8"
     }
@@ -71,23 +72,14 @@ dependencies {
     implementation project(':data')
     implementation project(':core')
 
-    implementation Compose.animation
-    implementation Compose.iconsExtended
-    implementation Compose.material
-    implementation Compose.runtime
-    implementation Compose.tooling
-    implementation Compose.ui
-    implementation Compose.uiUtil
-    implementation Compose.activityCompose
-    implementation Compose.navigationCompose
-    implementation Compose.lifecycleViewModelCompose
-
     implementation Core.androidXCore
     implementation Core.appCompat
     implementation Core.material
 
     implementation Libs.Coroutines.android
     implementation Libs.Coroutines.core
+
+    implementation Compose.compiler
 
     implementation Libs.Ktor.client
     implementation Libs.Ktor.logging
@@ -103,7 +95,6 @@ dependencies {
     implementation Libs.Koin.androidCompat
     implementation Libs.Koin.compose
 
-    androidTestImplementation Compose.uiTest
     testImplementation Libs.Coroutines.test
     testImplementation Tests.junit
     testImplementation Tests.junitKotlin

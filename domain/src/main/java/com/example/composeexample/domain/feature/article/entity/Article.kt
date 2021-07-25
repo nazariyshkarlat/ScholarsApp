@@ -7,7 +7,8 @@ import java.util.*
 @Serializable
 data class Article(
     val id: String,
-    val updated: String,
+    @Serializable(with = DateSerializer::class)
+    val updated: Date,
     @Serializable(with = DateSerializer::class)
     val published: Date,
     val title: String,

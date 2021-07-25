@@ -38,6 +38,8 @@ android {
         kotlinCompilerVersion DependenciesKt.kotlinVersion
         kotlinCompilerExtensionVersion Compose.composeVersion
     }
+
+
     kotlinOptions {
         jvmTarget = '1.8'
     }
@@ -57,6 +59,7 @@ dependencies {
     implementation Compose.activityCompose
     implementation Compose.navigationCompose
     implementation Compose.lifecycleViewModelCompose
+    implementation Compose.compiler
 
     implementation Core.androidXCore
     implementation Core.appCompat

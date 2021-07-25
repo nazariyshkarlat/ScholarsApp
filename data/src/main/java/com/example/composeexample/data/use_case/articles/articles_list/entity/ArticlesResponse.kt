@@ -127,10 +127,10 @@ internal fun List<ArticleEntity>.toArticles() = this.map { it.toArticle() }
 
 internal fun ArticleEntity.toArticle() = Article(
     id = id.toDomainId(),
-    updated = updated,
+    updated = updated.date,
     published = published.date,
     title = title,
-    summary = summary,
+    summary = summary.toSummaryDomain(),
     doi = doi,
     comment = comment,
     journalRef = journalRef,
@@ -139,6 +139,8 @@ internal fun ArticleEntity.toArticle() = Article(
     links = links.map { it.toDomain() },
     category = category.toDomain()
 )
+
+internal fun String.toSummaryDomain() = this.replace("\n", "")
 
 internal fun String.toDomainId() = this.split("/").last()
 

@@ -7,6 +7,14 @@ import com.example.composeexample.domain.intent.Intent
 import com.example.composeexample.domain.mvi.reducer
 
 sealed class ArticlesScreenState {
+
+    companion object{
+        val initialValue
+            get() = ArticlesScreenState.Loading(
+                category = Category(term = com.example.composeexample.domain.entity.Category.Astrophysics.category, scheme = "")
+            )
+    }
+
     abstract val category: Category
     data class Loading(override val category: Category) : ArticlesScreenState()
     data class Error(val errorType: ErrorType, override val category: Category) : ArticlesScreenState()

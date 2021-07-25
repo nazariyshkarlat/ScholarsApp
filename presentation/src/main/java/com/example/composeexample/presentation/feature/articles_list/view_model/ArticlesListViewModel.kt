@@ -29,9 +29,7 @@ class ArticlesListViewModel(
 ) : BaseViewModel() {
 
     override val state: MutableStateFlow<ArticlesScreenState> = MutableStateFlow(
-        value = ArticlesScreenState.Loading(
-            category = Category(term = com.example.composeexample.domain.entity.Category.Astrophysics.category, scheme = "")
-        )
+        ArticlesScreenState.initialValue
     )
 
     override val uiState: StateFlow<ArticlesScreenUiState> = state.map {
@@ -85,4 +83,10 @@ class ArticlesListViewModel(
     }
 }
 
-private typealias BaseViewModel = com.example.composeexample.presentation.base.BaseViewModel<ArticlesScreenState, ArticlesScreenUiState, ArticlesScreenIntent, ArticlesScreenClientEvent, ArticlesScreenClientAction, ArticlesScreenEvent>
+private typealias BaseViewModel = com.example.composeexample.presentation.base.BaseViewModel<
+        ArticlesScreenState,
+        ArticlesScreenUiState,
+        ArticlesScreenIntent,
+        ArticlesScreenClientEvent,
+        ArticlesScreenClientAction,
+        ArticlesScreenEvent>

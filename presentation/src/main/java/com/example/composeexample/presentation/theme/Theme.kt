@@ -5,28 +5,49 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.ReadOnlyComposable
+import androidx.compose.runtime.staticCompositionLocalOf
+import com.example.composeexample.presentation.extensions.AppColors
 
-private val DarkColorPalette = darkColors(
-    primary = blue,
-    secondary = grayish_blue_300,
-    background = black,
-    surface = white_50_65a,
-    onPrimary = white_50,
-    onSecondary = white_50,
-    onBackground = white,
-    onSurface = blue
+private val LocalColors = staticCompositionLocalOf {
+    LightColorPalette
+}
+
+private val LightColorPalette = AppColors(
+    material = lightColors(
+        primary = blue,
+        secondary = blue_light,
+        background = white,
+        surface = black8,
+        onPrimary = white,
+        onSecondary = white,
+        onBackground = black,
+        onSurface = blue
+    ),
+    onBackgroundSecondary = black80,
+    onBackgroundTertiary = black50,
 )
 
-private val LightColorPalette = lightColors(
-    primary = blue,
-    secondary = grayish_blue_300,
-    background = white,
-    surface = white_50_65a,
-    onPrimary = white_50,
-    onSecondary = white_50,
-    onBackground = black,
-    onSurface = blue
+private val DarkColorPalette = AppColors(
+    material = darkColors(
+        primary = blue,
+        secondary = blue_light,
+        background = black,
+        surface = white12,
+        onPrimary = white,
+        onSecondary = white,
+        onBackground = white,
+        onSurface = blue
+    ),
+    onBackgroundSecondary = white80,
+    onBackgroundTertiary = white50,
 )
+
+val MaterialTheme.appColors: AppColors
+    @Composable
+    @ReadOnlyComposable
+    get() = LocalColors.current
 
 @Composable
 fun AppTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
@@ -36,10 +57,12 @@ fun AppTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable ()
         LightColorPalette
     }
 
-    MaterialTheme(
-        colors = colors,
-        typography = typography,
-        shapes = shapes,
-        content = content
-    )
+    CompositionLocalProvider(LocalColors provides colors) {
+        MaterialTheme(
+            colors = colors.material,
+            typography = typography,
+            shapes = shapes,
+            content = content
+        )
+    }
 }

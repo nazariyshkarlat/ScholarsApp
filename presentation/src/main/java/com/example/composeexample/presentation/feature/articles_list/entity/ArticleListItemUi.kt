@@ -12,7 +12,6 @@ data class ArticleListItemUi(
     val id: String,
     val date: String,
     val title: String,
-    val summary: String,
     val authors: String,
     val doi: String?,
     val category: String
@@ -22,7 +21,6 @@ fun Article.toListItemUi() = ArticleListItemUi(
     id = id,
     date = published.toPublishedDate(),
     title = title,
-    summary = summary,
     doi = doi?.toDoi(),
     authors = authors.toUi(),
     category = category.toUi()
@@ -30,7 +28,7 @@ fun Article.toListItemUi() = ArticleListItemUi(
 
 private fun String.toDoi() = R.string.case_template_doi.str(this)
 
-private fun Date.toPublishedDate() = R.string.case_template_date.str(this.formattedDate)
+private fun Date.toPublishedDate() = R.string.screen_articles_item_template_published_date.str(this.formattedDate)
 
 fun com.example.composeexample.domain.feature.article.entity.Category.toUi() =
     when(com.example.composeexample.domain.entity.Category.byName(term)){

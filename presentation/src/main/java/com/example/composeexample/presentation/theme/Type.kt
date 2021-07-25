@@ -37,10 +37,22 @@ val typography = Typography(
         fontSize = 28.sp,
         letterSpacing = (0.1).sp
     ),
-    subtitle1 = DefaultTypography.subtitle1.copy(
+    h3 = DefaultTypography.h3.copy(
         fontFamily = AppFontFamily,
         fontWeight = FontWeight.Bold,
-        fontSize = 21.sp,
+        fontSize = 18.sp,
+        letterSpacing = (0.1).sp
+    ),
+    h4 = DefaultTypography.h4.copy(
+        fontFamily = AppFontFamily,
+        fontWeight = FontWeight.Bold,
+        fontSize = 14.sp,
+        letterSpacing = (0.1).sp
+    ),
+    subtitle1 = DefaultTypography.subtitle1.copy(
+        fontFamily = AppFontFamily,
+        fontWeight = FontWeight.Normal,
+        fontSize = 18.sp,
         letterSpacing = 0.sp
     ),
     subtitle2 = DefaultTypography.subtitle2.copy(
@@ -58,7 +70,7 @@ val typography = Typography(
     body2 = DefaultTypography.body2.copy(
         fontFamily = AppFontFamily,
         fontWeight = FontWeight.Normal,
-        fontSize = 12.sp,
+        fontSize = 14.sp,
         letterSpacing = 0.sp
     ),
     button = DefaultTypography.button.copy(

@@ -21,11 +21,12 @@ object ClassPaths {
 object Compose {
     const val composeVersion = "1.0.0-rc02"
     private const val composeActivityVersion = "1.3.0-rc02"
-    private const val composeNavigationVersion = "2.4.0-alpha04"
+    private const val composeNavigationVersion = "2.4.0-alpha05"
     private const val composeLifecycleViewModelVersion = "1.0.0-alpha07"
 
     const val animation = "androidx.compose.animation:animation:$composeVersion"
     const val iconsExtended = "androidx.compose.material:material-icons-extended:$composeVersion"
+    const val compiler = "androidx.compose.compiler:compiler:$composeVersion"
     const val material = "androidx.compose.material:material:$composeVersion"
     const val runtime = "androidx.compose.runtime:runtime:$composeVersion"
     const val tooling = "androidx.compose.ui:ui-tooling:$composeVersion"
@@ -46,9 +47,9 @@ object Tests {
 }
 
 object Core {
-    private const val androidXVersion = "1.3.2"
-    private const val appCompatVersion = "1.3.0"
-    private const val materialVersion = "1.3.0"
+    private const val androidXVersion = "1.5.0"
+    private const val appCompatVersion = "1.4.0-alpha03"
+    private const val materialVersion = "1.5.0-alpha01"
 
     const val androidXCore = "androidx.core:core-ktx:$androidXVersion"
     const val appCompat = "androidx.appcompat:appcompat:$appCompatVersion"

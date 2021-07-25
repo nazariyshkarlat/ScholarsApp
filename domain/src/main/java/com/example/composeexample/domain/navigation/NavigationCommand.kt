@@ -11,11 +11,6 @@ abstract class NavigationCommand {
     get() = destination.toString()
 
     companion object {
-        val Default = object : NavigationCommand() {
-            override val arguments = emptyList<Argument>()
-            override val destination = Destination(name = "")
-        }
-
         fun argumentOf(name: String, isOptional: Boolean, navType: NavType) = Argument(name, isOptional, navType)
 
         fun destinationOf(name: String, arguments: List<Argument> = emptyList()) = Destination(name, arguments)
@@ -55,6 +50,17 @@ abstract class NavigationCommand {
         val pathTemplate: String,
         val arguments: Map<String, Any> = emptyMap()
     ){
+
+        val isCommandBack = pathTemplate == KEY_NAVIGATE_BACK
+
+        companion object{
+            private const val KEY_NAVIGATE_BACK = "<-"
+
+            val navigateBack = CommandResult(
+                pathTemplate = KEY_NAVIGATE_BACK
+            )
+        }
+
         override fun toString() =
             arguments.toList().fold(initial = pathTemplate) { acc, pair->
                 acc.replace("{${pair.first}}", pair.second.toString())

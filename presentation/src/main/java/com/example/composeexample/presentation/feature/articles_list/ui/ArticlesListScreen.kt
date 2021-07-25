@@ -1,5 +1,6 @@
 package com.example.composeexample.presentation.feature.articles_list.ui
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
@@ -16,14 +17,15 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.composeexample.domain.action.ArticlesScreenClientAction
 import com.example.composeexample.presentation.feature.articles_list.entity.ArticleListItemUi
 import com.example.composeexample.presentation.feature.articles_list.state.ArticlesScreenUiState
 import com.example.composeexample.presentation.feature.articles_list.view_model.ArticlesListViewModel
-import com.example.composeexample.presentation.theme.MediumDimension
-import com.example.composeexample.presentation.theme.SmallDimension
+import com.example.composeexample.presentation.theme.*
 
 @Composable
 fun ArticlesListScreen(viewModel: ArticlesListViewModel) {
@@ -64,12 +66,13 @@ private fun ArticlesListScreen(
 @Composable
 private fun Toolbar(category: String){
     Surface(
-        color = MaterialTheme.colors.background,
+        color = MaterialTheme.appColors.background,
         elevation = SmallDimension
     ) {
         Row(
             Modifier
                 .fillMaxWidth()
+                .background(color = MaterialTheme.appColors.surface)
                 .padding(
                     start = MediumDimension,
                     end = MediumDimension,
@@ -80,7 +83,7 @@ private fun Toolbar(category: String){
         ) {
             Text(
                 text = category,
-                color = MaterialTheme.colors.onBackground,
+                color = MaterialTheme.appColors.onBackground,
                 style = MaterialTheme.typography.h2
             )
         }
@@ -110,14 +113,14 @@ private fun ArticleItem(article: ArticleListItemUi, onClick: (id: String) -> Uni
             text = article.title,
             style = MaterialTheme.typography.subtitle1,
             textAlign = TextAlign.Start,
-            color = MaterialTheme.colors.onBackground
+            color = MaterialTheme.appColors.onBackground
         )
         Text(
             modifier = Modifier.padding(top = SmallDimension),
             text = article.authors,
             style = MaterialTheme.typography.subtitle2,
             textAlign = TextAlign.Start,
-            color = MaterialTheme.colors.onBackground
+            color = MaterialTheme.appColors.onBackground
         )
         Row(modifier = Modifier
             .fillMaxWidth()
@@ -127,20 +130,20 @@ private fun ArticleItem(article: ArticleListItemUi, onClick: (id: String) -> Uni
             Text(
                 text = article.category,
                 style = MaterialTheme.typography.subtitle2,
-                color = MaterialTheme.colors.primary
+                color = MaterialTheme.appColors.primary
             )
             Text(
                 modifier = Modifier.padding(start = SmallDimension),
                 text = article.date,
                 style = MaterialTheme.typography.subtitle2,
-                color = MaterialTheme.colors.onBackground
+                color = MaterialTheme.appColors.onBackgroundSecondary
             )
             article.doi?.let {
                 Text(
                     modifier = Modifier.padding(start = SmallDimension),
                     text = it,
                     style = MaterialTheme.typography.subtitle2,
-                    color = MaterialTheme.colors.onBackground
+                    color = MaterialTheme.appColors.onBackgroundSecondary
                 )
             }
         }
@@ -157,8 +160,9 @@ private fun LoadingScreen(){
     Box(modifier = Modifier.fillMaxSize()){
         CircularProgressIndicator(
             modifier = Modifier
-                .size(24F.dp)
-                .align(Alignment.Center)
+                .size(ProgressBarSize)
+                .align(Alignment.Center),
+            strokeWidth = ProgressBarStrokeWidth
         )
     }
 }
@@ -172,7 +176,7 @@ private fun ErrorScreen(errorText: String){
                 .align(Alignment.Center),
             textAlign = TextAlign.Center,
             style = MaterialTheme.typography.subtitle1,
-            color = MaterialTheme.colors.error,
+            color = MaterialTheme.appColors.error,
             text = errorText
         )
     }

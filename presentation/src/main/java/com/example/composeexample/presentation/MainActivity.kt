@@ -5,8 +5,12 @@ import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.layout.Box
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -23,6 +27,7 @@ import com.example.composeexample.presentation.theme.AppTheme
 import com.google.accompanist.insets.ProvideWindowInsets
 import com.google.accompanist.insets.navigationBarsPadding
 import com.google.accompanist.insets.statusBarsPadding
+import kotlinx.coroutines.flow.collect
 import org.koin.core.parameter.parametersOf
 
 class MainActivity : AppCompatActivity() {
@@ -47,9 +52,15 @@ class MainActivity : AppCompatActivity() {
         ) {
             val navController = rememberNavController()
 
-            NavigationManager.command.collectAsState().value.also { command ->
-                if (command.pathTemplate.isNotEmpty()) {
-                    navController.navigate(command.toString())
+            LaunchedEffect(true) {
+                NavigationManager.command.collect {
+                    if (it.pathTemplate.isNotEmpty()) {
+                        if (it.isCommandBack) {
+                            navController.navigateUp()
+                        } else {
+                            navController.navigate(it.toString())
+                        }
+                    }
                 }
             }
 
